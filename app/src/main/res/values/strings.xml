@@ -10,4 +10,7 @@
     <string name="name">Name</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="sign_up">Sign Up</string>
+    <string name="welcome">Welcome</string>
+    <string name="continue_as_guest">Continue As Guest</string>
+    <string name="continue_ahead">Continue</string>
 </resources>

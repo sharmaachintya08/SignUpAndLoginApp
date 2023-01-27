@@ -116,5 +116,14 @@
             android:textColor="@color/primary"
             android:textSize="@dimen/_13ssp"
             android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/guestContinue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="@string/continue_as_guest"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/_13ssp"
+            android:textStyle="bold"/>
     </LinearLayout>
 </ScrollView>
