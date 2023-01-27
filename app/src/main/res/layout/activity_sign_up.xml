@@ -55,6 +55,7 @@
             android:paddingEnd="@dimen/_16sdp"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/_13ssp"/>
+
         <EditText
             android:id="@+id/inputEmail"
             android:layout_width="match_parent"
@@ -68,7 +69,7 @@
             android:paddingStart="@dimen/_16sdp"
             android:paddingEnd="@dimen/_16sdp"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/_13ssp"/>
+            android:textSize="@dimen/_13ssp" />
         <EditText
             android:id="@+id/inputPassword"
             android:layout_width="match_parent"

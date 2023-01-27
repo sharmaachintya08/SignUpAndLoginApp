@@ -2,6 +2,7 @@ package com.example.chatc.enter
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.chatc.R
 
 class guest : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="primary">#1C2E46</color>
     <color name="primary_dark">#142232</color>
     <color name="primary_text">#212121</color>
@@ -9,4 +10,9 @@
     <color name="icon_background">#20FFFFFF</color>
     <color name="error">#B00020</color>
     <color name="recieved_message_background">#090D16</color>
+
+    <color name="teal_200">#008080</color>
+    <color name="black">#000000</color>
+    <color name="purple_200">#CE93D8</color>
+    <color name="purple_700">#512DA8</color>
 </resources>
