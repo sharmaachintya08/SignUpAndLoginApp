@@ -1,7 +1,9 @@
 package com.example.chatc.enter
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -20,17 +22,28 @@ class signInActivity : AppCompatActivity() {
         createNewAccountText = findViewById(R.id.textCreateNewAccount)
         guestContinue = findViewById(R.id.guestContinue)
         signInButton.setOnClickListener( View.OnClickListener { view ->
-            Toast.makeText(this@signInActivity,"sign in button",Toast.LENGTH_SHORT)
-                .show()
+            intentStart(1)
         })
         createNewAccountText.setOnClickListener(View.OnClickListener { view ->
-            Toast.makeText(this@signInActivity,"create new acccount button",Toast.LENGTH_SHORT)
-                .show()
+            intentStart(2)
         })
         guestContinue.setOnClickListener(View.OnClickListener { view ->
-            Toast.makeText(this@signInActivity,"guest continue button",Toast.LENGTH_SHORT)
-                .show()
+            intentStart(3)
         })
     }
-
+    private fun intentStart(param: Int){
+        lateinit var intent: Intent
+        if(param == 1){
+            Toast.makeText(this@signInActivity,"sign in button",Toast.LENGTH_SHORT)
+                .show()
+        }else if (param == 2){
+            intent = Intent(this@signInActivity,SignUpActivity::class.java)
+            startActivity(intent)
+        }else if ( param == 3){
+            intent = Intent(this@signInActivity,guest::class.java)
+            startActivity(intent)
+        }else{
+            Log.d("debug","no if else option selected")
+        }
+    }
 }
