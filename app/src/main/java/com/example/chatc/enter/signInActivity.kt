@@ -37,7 +37,6 @@ class signInActivity : AppCompatActivity() {
     private fun intentStart(param: Int){
         lateinit var intent: Intent
         if(param == 1){
-            startFireStore()
         }else if (param == 2){
             intent = Intent(this@signInActivity,SignUpActivity::class.java)
             startActivity(intent)
@@ -47,21 +46,5 @@ class signInActivity : AppCompatActivity() {
         }else{
             Log.d("debug","no if else option selected")
         }
-    }
-    private fun startFireStore(){
-        val db = Firebase.firestore
-        val user = hashMapOf(
-            "first" to "Ada",
-            "last" to "Lovelace",
-            "born" to 1815
-        )
-        db.collection("users")
-            .add(user)
-            .addOnSuccessListener { documentReference ->
-                Log.i("success", "DocumentSnapshot added with ID: ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                Log.d("error", "${e}")
-            }
     }
 }
