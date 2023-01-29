@@ -5,7 +5,6 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class firestoreInstance(
-    private val imageURL : String,
     private val name: String,
     private val email : String,
     private val password : String,
@@ -13,7 +12,6 @@ class firestoreInstance(
     fun addInstance(){
         val db = Firebase.firestore
         val user = hashMapOf(
-            "imageurl" to imageURL,
             "name" to name,
             "email" to email,
             "password" to password,
