@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "303356085624",
+    "project_id": "chatc-1f62a",
+    "storage_bucket": "chatc-1f62a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:303356085624:android:627d609f378aa69c7cb48d",
+        "android_client_info": {
+          "package_name": "com.example.chatc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "303356085624-u0v3jteio7tvobrjks091hbk7v391chq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1JcicybpFHw9GoVMpXhc6yW_KEQoTMk4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "303356085624-u0v3jteio7tvobrjks091hbk7v391chq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
