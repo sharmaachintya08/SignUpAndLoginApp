@@ -37,8 +37,7 @@ class signInActivity : AppCompatActivity() {
     private fun intentStart(param: Int){
         lateinit var intent: Intent
         if(param == 1){
-            Toast.makeText(this@signInActivity,"sign in button",Toast.LENGTH_SHORT)
-                .show()
+            startFireStore()
         }else if (param == 2){
             intent = Intent(this@signInActivity,SignUpActivity::class.java)
             startActivity(intent)
@@ -59,10 +58,10 @@ class signInActivity : AppCompatActivity() {
         db.collection("users")
             .add(user)
             .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+                Log.i("success", "DocumentSnapshot added with ID: ${documentReference.id}")
             }
             .addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
+                Log.d("error", "${e}")
             }
     }
 }
