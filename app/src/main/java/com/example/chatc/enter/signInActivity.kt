@@ -1,5 +1,6 @@
 package com.example.chatc.enter
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,8 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.chatc.R
 import com.google.android.material.button.MaterialButton
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class signInActivity : AppCompatActivity() {
     private lateinit var signInButton : Button
@@ -45,5 +48,21 @@ class signInActivity : AppCompatActivity() {
         }else{
             Log.d("debug","no if else option selected")
         }
+    }
+    private fun startFireStore(){
+        val db = Firebase.firestore
+        val user = hashMapOf(
+            "first" to "Ada",
+            "last" to "Lovelace",
+            "born" to 1815
+        )
+        db.collection("users")
+            .add(user)
+            .addOnSuccessListener { documentReference ->
+                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error adding document", e)
+            }
     }
 }
