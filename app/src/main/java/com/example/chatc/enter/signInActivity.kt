@@ -14,7 +14,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class signInActivity : AppCompatActivity() {
+class signInActivity : AppCompatActivity(),View.OnClickListener {
     private lateinit var signInButton : Button
     private lateinit var createNewAccountText : TextView
     private lateinit var guestContinue : TextView
@@ -24,19 +24,23 @@ class signInActivity : AppCompatActivity() {
         signInButton = findViewById(R.id.buttonSignIn)
         createNewAccountText = findViewById(R.id.textCreateNewAccount)
         guestContinue = findViewById(R.id.guestContinue)
-        signInButton.setOnClickListener( View.OnClickListener { view ->
-            intentStart(1)
-        })
-        createNewAccountText.setOnClickListener(View.OnClickListener { view ->
-            intentStart(2)
-        })
-        guestContinue.setOnClickListener(View.OnClickListener { view ->
-            intentStart(3)
-        })
+
+        signInButton.setOnClickListener(this@signInActivity)
+        createNewAccountText.setOnClickListener(this@signInActivity)
+        guestContinue.setOnClickListener(this@signInActivity)
+    }
+
+    override fun onClick(view: View?) {
+        when(view?.id){
+            R.id.buttonSignIn -> intentStart(1)
+            R.id.textCreateNewAccount -> intentStart(2)
+            R.id.guestContinue -> intentStart(3)
+        }
     }
     private fun intentStart(param: Int){
         lateinit var intent: Intent
         if(param == 1){
+            //something
         }else if (param == 2){
             intent = Intent(this@signInActivity,SignUpActivity::class.java)
             startActivity(intent)

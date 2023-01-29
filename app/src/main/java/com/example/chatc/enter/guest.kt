@@ -10,7 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.chatc.R
 
-class guest : AppCompatActivity() {
+class guest : AppCompatActivity(),View.OnClickListener {
     private lateinit var continueGuestButton : Button
     private lateinit var createNewAccountButton : TextView
     private lateinit var signInButton : TextView
@@ -20,15 +20,18 @@ class guest : AppCompatActivity() {
         continueGuestButton = findViewById(R.id.continueAsGuest)
         createNewAccountButton = findViewById(R.id.textCreateNewAccount)
         signInButton = findViewById(R.id.textSignIn)
-        continueGuestButton.setOnClickListener(View.OnClickListener { view ->
-            startIntent(1)
-        })
-        createNewAccountButton.setOnClickListener(View.OnClickListener { view ->
-            startIntent(2)
-        })
-        signInButton.setOnClickListener(View.OnClickListener { view ->
-            startIntent(3)
-        })
+
+        continueGuestButton.setOnClickListener(this@guest)
+        createNewAccountButton.setOnClickListener(this@guest)
+        signInButton.setOnClickListener(this@guest)
+    }
+
+    override fun onClick(view: View?) {
+        when(view?.id){
+            R.id.continueAsGuest -> startIntent(1)
+            R.id.textCreateNewAccount -> startIntent(2)
+            R.id.textSignIn -> startIntent(3)
+        }
     }
     private fun startIntent(param : Int){
         lateinit var intent : Intent
