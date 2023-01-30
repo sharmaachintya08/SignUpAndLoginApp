@@ -47,8 +47,6 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
         lateinit var intent : Intent
         if(param == 1){
             getImage()
-            //java.lang.nullpointerException
-            Log.d("storage","${profileImage}")
             FirebaseStorageInstance(profileImage).storageReference()
         }
         else if(param == 2){
