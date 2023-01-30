@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.ImageView
 import android.widget.Toast
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
 
@@ -13,7 +14,7 @@ class FirebaseStorageInstance(private val userImage : ImageView) {
     private val storage = Firebase.storage
     private val storageRef = storage.reference
     private val imageRef = storageRef.child("userImages")
-    fun storageReference(){
+    fun storageReference() : StorageReference{
         userImage.isDrawingCacheEnabled = true
         userImage.buildDrawingCache()
         val bitmap = userImage.getDrawingCache()
@@ -26,5 +27,8 @@ class FirebaseStorageInstance(private val userImage : ImageView) {
         }.addOnSuccessListener { taskSnapshot ->
             Log.i("imageUploadSuccess","${taskSnapshot}")
         }
+        //getting back the reference of the image
+        //this is a storage reference type
+        return storage.getReferenceFromUrl("gs://chatc-1f62a.appspot.com/userImages")
     }
 }
