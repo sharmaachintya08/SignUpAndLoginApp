@@ -7,10 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.example.chatc.R
+import com.example.chatc.Validity.ifValid
 import com.example.chatc.data.FirebaseStorageInstance
 import com.google.firebase.storage.StorageReference
 import java.net.URI
@@ -21,8 +23,14 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
     private lateinit var signInButton : TextView
     private lateinit var guestContinueButton : TextView
 
+    private lateinit var name : EditText
+    private lateinit var email : EditText
+    private lateinit var password : EditText
+    private lateinit var confirmPassword : EditText
+
     private val SELECT_IMAGE_CODE : Int = 1
     private lateinit var  storageRef : StorageReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -30,6 +38,11 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
         signUpButton = findViewById(R.id.buttonSignUp)
         signInButton = findViewById(R.id.textSignIn)
         guestContinueButton = findViewById(R.id.guestContinue)
+
+        name = findViewById(R.id.inputName)
+        email = findViewById(R.id.inputEmail)
+        password = findViewById(R.id.inputPassword)
+        confirmPassword = findViewById(R.id.inputPassword)
 
         profileImage.setOnClickListener(this@SignUpActivity)
         signUpButton.setOnClickListener(this@SignUpActivity)
@@ -54,6 +67,8 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
         else if(param == 2){
             Toast.makeText(this@SignUpActivity,"sign up details stored",Toast.LENGTH_SHORT)
                 .show()
+            //////////////////////////////////////////////////////////
+
         }else if(param == 3){
             intent = Intent(this@SignUpActivity,signInActivity::class.java)
             startActivity(intent)
