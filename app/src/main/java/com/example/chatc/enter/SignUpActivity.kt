@@ -24,9 +24,16 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
     private lateinit var guestContinueButton : TextView
 
     private lateinit var name : EditText
+    private lateinit var fname : String
+
     private lateinit var email : EditText
+    private lateinit var femail : String
+
     private lateinit var password : EditText
+    private lateinit var fpassword : String
+
     private lateinit var confirmPassword : EditText
+    private lateinit var fconfirmPassword : String
 
     private val SELECT_IMAGE_CODE : Int = 1
     private lateinit var  storageRef : StorageReference
@@ -40,9 +47,16 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
         guestContinueButton = findViewById(R.id.guestContinue)
 
         name = findViewById(R.id.inputName)
+        fname = name.text.toString()
+
         email = findViewById(R.id.inputEmail)
+        femail = email.text.toString()
+
         password = findViewById(R.id.inputPassword)
+        fpassword = email.text.toString()
+
         confirmPassword = findViewById(R.id.inputPassword)
+        fconfirmPassword = confirmPassword.text.toString()
 
         profileImage.setOnClickListener(this@SignUpActivity)
         signUpButton.setOnClickListener(this@SignUpActivity)
@@ -65,10 +79,14 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
             storageRef = FirebaseStorageInstance(profileImage).storageReference()
         }
         else if(param == 2){
-            Toast.makeText(this@SignUpActivity,"sign up details stored",Toast.LENGTH_SHORT)
-                .show()
-            //////////////////////////////////////////////////////////
-
+            //Toast.makeText(this@SignUpActivity,"sign up details stored",Toast.LENGTH_SHORT)
+              //  .show()
+            //storageRef is not initialized
+            val validity = ifValid(storageRef,fname,femail,fpassword,fconfirmPassword).signUpValid(this@SignUpActivity)
+            if(validity == 0){
+                Toast.makeText(this@SignUpActivity,"inside signupactivity.kt",Toast.LENGTH_SHORT)
+                    .show()
+            }
         }else if(param == 3){
             intent = Intent(this@SignUpActivity,signInActivity::class.java)
             startActivity(intent)
