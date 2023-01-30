@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.example.chatc.R
+import com.example.chatc.data.FirebaseStorageInstance
 import java.net.URI
 
 class SignUpActivity : AppCompatActivity(),View.OnClickListener {
@@ -46,6 +47,9 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
         lateinit var intent : Intent
         if(param == 1){
             getImage()
+            //java.lang.nullpointerException
+            Log.d("storage","${profileImage}")
+            FirebaseStorageInstance(profileImage).storageReference()
         }
         else if(param == 2){
             Toast.makeText(this@SignUpActivity,"sign up details stored",Toast.LENGTH_SHORT)
