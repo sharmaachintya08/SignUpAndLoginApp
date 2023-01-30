@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.chatc.R
 import com.example.chatc.data.FirebaseStorageInstance
+import com.google.firebase.storage.StorageReference
 import java.net.URI
 
 class SignUpActivity : AppCompatActivity(),View.OnClickListener {
@@ -21,6 +22,7 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
     private lateinit var guestContinueButton : TextView
 
     private val SELECT_IMAGE_CODE : Int = 1
+    private lateinit var  storageRef : StorageReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -47,7 +49,7 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
         lateinit var intent : Intent
         if(param == 1){
             getImage()
-            FirebaseStorageInstance(profileImage).storageReference()
+            storageRef = FirebaseStorageInstance(profileImage).storageReference()
         }
         else if(param == 2){
             Toast.makeText(this@SignUpActivity,"sign up details stored",Toast.LENGTH_SHORT)
