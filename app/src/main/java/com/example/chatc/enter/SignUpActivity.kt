@@ -1,6 +1,7 @@
 package com.example.chatc.enter
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,12 +11,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.example.chatc.R
+import java.net.URI
 
 class SignUpActivity : AppCompatActivity(),View.OnClickListener {
     private lateinit var profileImage : ImageView
     private lateinit var signUpButton : Button
     private lateinit var signInButton : TextView
     private lateinit var guestContinueButton : TextView
+
+    private val SELECT_IMAGE_CODE : Int = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -41,7 +45,7 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
     private fun startIntent(param : Int){
         lateinit var intent : Intent
         if(param == 1){
-            //something
+            getImage()
         }
         else if(param == 2){
             Toast.makeText(this@SignUpActivity,"sign up details stored",Toast.LENGTH_SHORT)
@@ -54,6 +58,20 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
             startActivity(intent)
         }else{
             Log.d("debug","no button clicked")
+        }
+    }
+    private fun getImage(){
+        val intent : Intent = Intent()
+        intent.setType("image/*")
+        intent.setAction(Intent.ACTION_GET_CONTENT)
+        startActivityForResult(Intent.createChooser(intent,"title"),SELECT_IMAGE_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 1){
+            val uri = data?.data
+            profileImage.setImageURI(uri)
         }
     }
 }
