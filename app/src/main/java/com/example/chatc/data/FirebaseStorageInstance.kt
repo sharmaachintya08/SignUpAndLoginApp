@@ -27,8 +27,7 @@ class FirebaseStorageInstance(private val userImage : ImageView) {
         }.addOnSuccessListener { taskSnapshot ->
             Log.i("imageUploadSuccess","${taskSnapshot}")
         }
-        //getting back the reference of the image
-        //this is a storage reference type
+
         return storage.getReferenceFromUrl("gs://chatc-1f62a.appspot.com/userImages")
     }
 }
