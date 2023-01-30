@@ -10,9 +10,6 @@ import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
 
 class FirebaseStorageInstance(private val userImage : ImageView) {
-    init{
-        Log.d("storage","${userImage}")
-    }
     private val storage = Firebase.storage
     private val storageRef = storage.reference
     private val imageRef = storageRef.child("userImages")
