@@ -59,4 +59,15 @@ class ifValid(
             return true
         }
     }
+    fun guestValid(con : Context) : Boolean{
+        if(name?.text.toString().isEmpty()){
+            Toast.makeText(con,"please fill the name field",Toast.LENGTH_SHORT)
+                .show()
+            return false
+        }else{
+            Toast.makeText(con,"welcome as guest",Toast.LENGTH_SHORT)
+                .show()
+            return true
+        }
+    }
 }
