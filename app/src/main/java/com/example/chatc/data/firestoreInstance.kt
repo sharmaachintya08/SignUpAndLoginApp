@@ -29,21 +29,20 @@ class firestoreInstance(
                 Log.d("firestore","${error}")
             }
     }
-    fun getData(){
+    fun getData() : Boolean{
+        var returnVal : Boolean = false
         val db = Firebase.firestore
         db.collection("users")
             .whereEqualTo("email","${email}")
             .whereEqualTo("password","${password}")
             .get()
             .addOnSuccessListener { document ->
-                for(i in document){
-                    for( j in i.data){
-                        Log.i("getData","${j}")
-                    }
-                }
+                returnVal = true
             }
             .addOnFailureListener{ exception ->
                 Log.d("getData","${exception}")
+                returnVal = false
             }
+        return returnVal
     }
 }
