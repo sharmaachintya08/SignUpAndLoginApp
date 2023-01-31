@@ -66,7 +66,7 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
         }
         else if(param == 2){
             var validity = ifValid(name,email,password,confirmPassword).signUpValid(this@SignUpActivity)
-            if(validity == 0){
+            if(validity == true){
                 Toast.makeText(this@SignUpActivity,"inside signupactivity.kt",Toast.LENGTH_SHORT)
                     .show()
             }
