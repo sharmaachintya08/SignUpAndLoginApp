@@ -56,8 +56,6 @@ class ifValid(
                 .show()
             return false
         }else{
-            Toast.makeText(con,"successfully signed in",Toast.LENGTH_SHORT)
-                .show()
             return true
         }
     }
