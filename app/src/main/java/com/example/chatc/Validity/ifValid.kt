@@ -15,7 +15,11 @@ class ifValid(
     private val confirmPassword : EditText?
 ){
     fun signUpValid(con : Context) : Boolean {
-        if(name?.text.toString().trim().isEmpty()){
+        if(isPresent()){
+            Toast.makeText(con,"account is present, please Login",Toast.LENGTH_SHORT)
+                .show()
+            return false
+        }else if(name?.text.toString().trim().isEmpty()){
             Toast.makeText(con,"please fill the name field",Toast.LENGTH_SHORT)
                 .show()
             return false
@@ -87,6 +91,17 @@ class ifValid(
             password?.text.toString(),
             confirmPassword?.text.toString()
         ).getData()
+        return returnVal
+    }
+    fun isPresent() : Boolean{
+        val returnVal = firestoreInstance(
+            storageRef,
+            name?.text.toString(),
+            email?.text.toString(),
+            password?.text.toString(),
+            confirmPassword?.text.toString()
+        ).getData()
+        Log.d("isPresent"," isPresent :- ${returnVal}")
         return returnVal
     }
 }
