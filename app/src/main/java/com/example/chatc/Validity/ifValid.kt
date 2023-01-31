@@ -81,13 +81,14 @@ class ifValid(
             confirmPassword?.text.toString()
         ).addInstance()
     }
-    fun getDataFromFireStore(){
-        firestoreInstance(
+    fun getDataFromFireStore() : Boolean{
+        val returnVal = firestoreInstance(
             storageRef,
             name?.text.toString(),
             email?.text.toString(),
             password?.text.toString(),
             confirmPassword?.text.toString()
         ).getData()
+        return returnVal
     }
 }
