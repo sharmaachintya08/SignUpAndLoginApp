@@ -30,6 +30,7 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
 
     private val SELECT_IMAGE_CODE : Int = 1
     private var storageRef : StorageReference? = null
+    private lateinit var validity : ifValid
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,10 +66,10 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
             storageRef = FirebaseStorageInstance(profileImage).storageReference()
         }
         else if(param == 2){
-            var validity = ifValid(storageRef,name,email,password,confirmPassword).signUpValid(this@SignUpActivity)
-            if(validity == true){
-                Toast.makeText(this@SignUpActivity,"inside signupactivity.kt",Toast.LENGTH_SHORT)
-                    .show()
+            validity = ifValid(storageRef,name,email,password,confirmPassword)
+            var validityCheck = validity.signUpValid(this@SignUpActivity)
+            if(validityCheck == true){
+
             }
         }else if(param == 3){
             intent = Intent(this@SignUpActivity,signInActivity::class.java)
