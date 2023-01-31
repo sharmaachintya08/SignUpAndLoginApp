@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.chatc.R
 import com.example.chatc.Validity.ifValid
+import com.example.chatc.data.firestoreInstance
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -50,9 +51,10 @@ class signInActivity : AppCompatActivity(),View.OnClickListener {
     private fun intentStart(param: Int){
         lateinit var intent: Intent
         if(param == 1){
-            val validity = ifValid(null,null,email,password,null).signInValid(this@signInActivity)
-            if(validity == true){
-                //do something
+            val validity = ifValid(null,null,email,password,null)
+            val validityResult = validity.signInValid(this@signInActivity)
+            if(validityResult == true){
+                validity.getDataFromFireStore()
             }
         }else if (param == 2){
             intent = Intent(this@signInActivity,SignUpActivity::class.java)
