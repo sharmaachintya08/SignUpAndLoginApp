@@ -29,4 +29,15 @@ class firestoreInstance(
                 Log.d("firestore","${error}")
             }
     }
+    fun getData(){
+        val db = Firebase.firestore
+        val docRef = db.collection("users")
+        docRef.get()
+            .addOnSuccessListener { document ->
+                Log.i("getdata","${document}")
+            }
+            .addOnFailureListener{ exception ->
+                Log.d("getData","${exception}")
+            }
+    }
 }
