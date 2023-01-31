@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
+import com.example.chatc.data.firestoreInstance
 import com.google.firebase.storage.StorageReference
 
 class ifValid(
@@ -69,5 +70,14 @@ class ifValid(
                 .show()
             return true
         }
+    }
+    fun sendDataToFireStore(){
+        firestoreInstance(
+            storageRef,
+            name?.text.toString(),
+            email?.text.toString(),
+            password?.text.toString(),
+            confirmPassword?.text.toString()
+        ).addInstance()
     }
 }
