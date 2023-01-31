@@ -42,6 +42,7 @@ class ifValid(
         }else{
             Toast.makeText(con,"successfully signed up",Toast.LENGTH_SHORT)
                 .show()
+            sendDataToFireStore()
             return true
         }
     }

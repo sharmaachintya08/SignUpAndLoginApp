@@ -67,10 +67,7 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
         }
         else if(param == 2){
             validity = ifValid(storageRef,name,email,password,confirmPassword)
-            var validityCheck = validity.signUpValid(this@SignUpActivity)
-            if(validityCheck == true){
-
-            }
+            validity.signUpValid(this@SignUpActivity)
         }else if(param == 3){
             intent = Intent(this@SignUpActivity,signInActivity::class.java)
             startActivity(intent)
