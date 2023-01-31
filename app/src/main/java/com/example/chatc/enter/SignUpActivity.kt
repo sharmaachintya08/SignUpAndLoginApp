@@ -67,7 +67,10 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
         }
         else if(param == 2){
             validity = ifValid(storageRef,name,email,password,confirmPassword)
-            validity.signUpValid(this@SignUpActivity)
+            val checkValidity = validity.signUpValid(this@SignUpActivity)
+            if(checkValidity){
+                //go to the message activity
+            }
         }else if(param == 3){
             intent = Intent(this@SignUpActivity,signInActivity::class.java)
             startActivity(intent)
