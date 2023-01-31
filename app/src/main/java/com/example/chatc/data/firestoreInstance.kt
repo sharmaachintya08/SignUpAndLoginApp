@@ -34,7 +34,11 @@ class firestoreInstance(
         val docRef = db.collection("users")
         docRef.get()
             .addOnSuccessListener { document ->
-                Log.i("getdata","${document}")
+                for(i in document){
+                    for( j in i.data){
+                        Log.i("getData","${j}")
+                    }
+                }
             }
             .addOnFailureListener{ exception ->
                 Log.d("getData","${exception}")
