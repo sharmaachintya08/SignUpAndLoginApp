@@ -31,8 +31,10 @@ class firestoreInstance(
     }
     fun getData(){
         val db = Firebase.firestore
-        val docRef = db.collection("users")
-        docRef.get()
+        db.collection("users")
+            .whereEqualTo("email","${email}")
+            .whereEqualTo("password","${password}")
+            .get()
             .addOnSuccessListener { document ->
                 for(i in document){
                     for( j in i.data){
