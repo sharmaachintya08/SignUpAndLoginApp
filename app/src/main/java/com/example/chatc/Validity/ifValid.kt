@@ -7,6 +7,7 @@ import android.widget.Toast
 import com.google.firebase.storage.StorageReference
 
 class ifValid(
+    private val storageRef : StorageReference?,
     private val name : EditText?,
     private val email : EditText?,
     private val password : EditText?,

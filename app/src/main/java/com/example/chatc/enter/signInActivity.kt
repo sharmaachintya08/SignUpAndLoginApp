@@ -50,7 +50,7 @@ class signInActivity : AppCompatActivity(),View.OnClickListener {
     private fun intentStart(param: Int){
         lateinit var intent: Intent
         if(param == 1){
-            val validity = ifValid(null,email,password,null).signInValid(this@signInActivity)
+            val validity = ifValid(null,null,email,password,null).signInValid(this@signInActivity)
             if(validity == true){
                 //do something
             }
