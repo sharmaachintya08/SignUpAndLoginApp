@@ -7,14 +7,12 @@ import android.widget.Toast
 import com.google.firebase.storage.StorageReference
 
 class ifValid(
-    private val imageRef : StorageReference ,
     private val name : EditText,
     private val email : EditText,
     private val password : EditText,
     private val confirmPassword : EditText
 ){
     fun signUpValid(con : Context) : Int {
-        Log.d("valid","${password.text.trim()} , ${confirmPassword.text.trim()}")
         if(name.text.toString().trim().isEmpty()){
             Toast.makeText(con,"please fill the name field",Toast.LENGTH_SHORT)
                 .show()
