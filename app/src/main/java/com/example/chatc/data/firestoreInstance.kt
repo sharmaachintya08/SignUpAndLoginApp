@@ -4,6 +4,8 @@ import android.util.Log
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
+import kotlin.properties.Delegates
+import kotlin.reflect.typeOf
 
 class firestoreInstance(
     private val imageRef : StorageReference?,
@@ -11,6 +13,11 @@ class firestoreInstance(
     private val email : String,
     private val password : String,
     private val confirmPassword : String){
+
+    private var dataList : MutableList<String> = mutableListOf()
+    private var fDataList : MutableList<String> = mutableListOf()
+    var fValue : Boolean? = null
+
     fun addInstance(){
         val db = Firebase.firestore
         val user = hashMapOf(
@@ -29,22 +36,27 @@ class firestoreInstance(
                 Log.d("firestore","${error}")
             }
     }
-    fun getData() : Boolean{
-        var returnVal : Boolean
+    fun getData() {
         val db = Firebase.firestore
         db.collection("users")
-            .whereEqualTo("email","${email}")
-            .whereEqualTo("password","${password}")
+            .whereEqualTo("email", "${email}")
+            .whereEqualTo("password", "${password}")
             .get()
             .addOnSuccessListener { document ->
-                Log.d("isPresent","inside addonsuccesslistener")
-                returnVal = true
+                for (i in document) {
+                    for (j in i.data.values) {
+                        j?.let {
+                            dataList.add(j.toString())
+                        }
+                    }
+                }
+                getList(dataList)
             }
-            .addOnFailureListener{ exception ->
-                Log.d("getData","${exception}")
-                returnVal = false
+            .addOnFailureListener { exception ->
+                Log.d("getData", "${exception}")
             }
-        Log.d("isPresent","getData :- ${returnVal}")
-        return returnVal
+    }
+    fun getList(dataList : MutableList<String>)  {
+
     }
 }

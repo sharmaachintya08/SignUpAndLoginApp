@@ -83,7 +83,8 @@ class ifValid(
     }
     fun returnVal() : Boolean{
         getDataFromFireStore()
-        return fInstance.returnVal()
+        Log.d("debuglist","${fInstance.fValue}")
+        return true
     }
     fun getDataFromFireStore(){
         fInstance.getData()
