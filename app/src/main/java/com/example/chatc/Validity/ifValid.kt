@@ -81,11 +81,11 @@ class ifValid(
     fun sendDataToFireStore() {
         fInstance.addInstance()
     }
-
+    fun returnVal() : Boolean{
+        getDataFromFireStore()
+        return fInstance.returnVal()
+    }
     fun getDataFromFireStore(){
         fInstance.getData()
-    }
-    fun returnVal() : Boolean{
-        return fInstance.returnVal()
     }
 }
