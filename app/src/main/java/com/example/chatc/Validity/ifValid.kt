@@ -16,11 +16,7 @@ class ifValid(
 ) {
     private val fInstance = firestoreInstance(storageRef, name?.text.toString(), email?.text.toString(), password?.text.toString(), confirmPassword?.text.toString())
     fun signUpValid(con: Context): Boolean {
-        if (returnVal()) {
-            Toast.makeText(con, "account is present, please Login", Toast.LENGTH_SHORT)
-                .show()
-            return false
-        } else if (name?.text.toString().trim().isEmpty()) {
+        if (name?.text.toString().trim().isEmpty()) {
             Toast.makeText(con, "please fill the name field", Toast.LENGTH_SHORT)
                 .show()
             return false
