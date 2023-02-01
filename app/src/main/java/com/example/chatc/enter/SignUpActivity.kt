@@ -67,9 +67,13 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
         }
         else if(param == 2){
             validity = ifValid(storageRef,name,email,password,confirmPassword)
-            val checkValidity = validity.signUpValid(this@SignUpActivity)
-            if(checkValidity){
-                //go to the message activity
+            if(validity.signUpValid(this@SignUpActivity)){
+                if(validity.returnVal()){
+                    Toast.makeText(this@SignUpActivity,"Account is Present, please Log in",Toast.LENGTH_SHORT)
+                        .show()
+                }else{
+                    //go to the message box
+                }
             }
         }else if(param == 3){
             intent = Intent(this@SignUpActivity,signInActivity::class.java)
