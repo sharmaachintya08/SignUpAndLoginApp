@@ -52,8 +52,7 @@ class signInActivity : AppCompatActivity(),View.OnClickListener {
         lateinit var intent: Intent
         if(param == 1){
             val validity = ifValid(null,null,email,password,null)
-            val validityResult = validity.signInValid(this@signInActivity)
-            if(validityResult == true){
+            if(validity.signInValid(this@signInActivity)){
                 if(validity.returnVal()){
                     //go to the message box
                 }else{
