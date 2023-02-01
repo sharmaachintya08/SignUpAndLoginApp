@@ -54,7 +54,7 @@ class signInActivity : AppCompatActivity(),View.OnClickListener {
             val validity = ifValid(null,null,email,password,null)
             val validityResult = validity.signInValid(this@signInActivity)
             if(validityResult == true){
-                if(validity.getDataFromFireStore()){
+                if(validity.returnVal()){
                     //go to the message box
                 }else{
                     Toast.makeText(this@signInActivity,"SignUp please",Toast.LENGTH_SHORT)
