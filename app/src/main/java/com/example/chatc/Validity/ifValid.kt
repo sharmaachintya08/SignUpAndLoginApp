@@ -9,13 +9,14 @@ import com.example.chatc.data.firestoreInstance
 import com.google.firebase.storage.StorageReference
 
 class ifValid (
+    private val con : Context,
     private val storageRef : StorageReference?,
     private val name : EditText?,
     private val email : EditText?,
     private val password : EditText?,
     private val confirmPassword : EditText?
 ) {
-    private val fInstance = firestoreInstance(storageRef, name?.text.toString(), email?.text.toString(), password?.text.toString(), confirmPassword?.text.toString())
+    private val fInstance = firestoreInstance(con,storageRef, name?.text.toString(), email?.text.toString(), password?.text.toString(), confirmPassword?.text.toString())
     fun signUpValid(con: Context): Boolean {
         if (name?.text.toString().trim().isEmpty()) {
             Toast.makeText(con, "please fill the name field", Toast.LENGTH_SHORT)
@@ -46,9 +47,6 @@ class ifValid (
                 .show()
             return false
         } else {
-            Toast.makeText(con, "successfully signed up", Toast.LENGTH_SHORT)
-                .show()
-            sendDataToFireStore()
             return true
         }
     }
@@ -78,12 +76,7 @@ class ifValid (
             return true
         }
     }
-
-    fun sendDataToFireStore() {
-        fInstance.addInstance()
-    }
-    fun returnVal() : Boolean{
+    fun returnVal(){
         fInstance.getValue()
-        return false
     }
 }
