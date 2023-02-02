@@ -51,14 +51,9 @@ class signInActivity : AppCompatActivity(),View.OnClickListener {
     private fun intentStart(param: Int){
         lateinit var intent: Intent
         if(param == 1){
-            val validity = ifValid(null,null,email,password,null)
+            val validity = ifValid(this@signInActivity,null,null,email,password,null)
             if(validity.signInValid(this@signInActivity)){
-                if(validity.returnVal()){
-                    //go to the message box
-                }else{
-                    Toast.makeText(this@signInActivity,"SignUp please",Toast.LENGTH_SHORT)
-                        .show()
-                }
+                validity.returnVal()
             }
         }else if (param == 2){
             intent = Intent(this@signInActivity,SignUpActivity::class.java)

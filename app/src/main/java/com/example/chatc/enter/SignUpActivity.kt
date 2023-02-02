@@ -66,14 +66,9 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
             storageRef = FirebaseStorageInstance(profileImage).storageReference()
         }
         else if(param == 2){
-            validity = ifValid(storageRef,name,email,password,confirmPassword)
+            validity = ifValid(this@SignUpActivity,storageRef,name,email,password,confirmPassword)
             if(validity.signUpValid(this@SignUpActivity)){
-                if(validity.returnVal()){
-                    Toast.makeText(this@SignUpActivity,"Account is Present, please Log in",Toast.LENGTH_SHORT)
-                        .show()
-                }else{
-                    //go to the message box
-                }
+                validity.returnVal()
             }
         }else if(param == 3){
             intent = Intent(this@SignUpActivity,signInActivity::class.java)
