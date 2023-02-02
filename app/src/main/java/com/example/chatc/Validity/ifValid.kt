@@ -4,10 +4,11 @@ import android.content.Context
 import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
+import com.example.chatc.data.MyCallBack
 import com.example.chatc.data.firestoreInstance
 import com.google.firebase.storage.StorageReference
 
-class ifValid(
+class ifValid (
     private val storageRef : StorageReference?,
     private val name : EditText?,
     private val email : EditText?,
@@ -82,11 +83,7 @@ class ifValid(
         fInstance.addInstance()
     }
     fun returnVal() : Boolean{
-        getDataFromFireStore()
-        Log.d("debuglist","${fInstance.fValue}")
-        return true
-    }
-    fun getDataFromFireStore(){
-        fInstance.getData()
+        fInstance.getValue()
+        return false
     }
 }
