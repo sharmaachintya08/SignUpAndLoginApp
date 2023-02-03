@@ -1,10 +1,13 @@
 package com.example.chatc.data
 
 import android.content.Context
+import android.content.Intent
 import android.os.Parcel
 import android.os.Parcelable
 import android.util.Log
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
+import com.example.chatc.Message.messageBox
 import com.example.chatc.Validity.ifValid
 import com.example.chatc.enter.SignUpActivity
 import com.example.chatc.enter.signInActivity
@@ -67,8 +70,9 @@ class firestoreInstance (
             override fun onCallBack(dataList: MutableList<String>) {
                 if(con is signInActivity){
                     if(dataList.contains(email)&&dataList.contains(password)){
-                        Toast.makeText(con,"go to the message box",Toast.LENGTH_SHORT)
-                            .show()
+                        var intent = Intent(con,messageBox::class.java)
+                        con.startActivity(intent)
+
                     }else{
                         Toast.makeText(con,"id not present please signup",Toast.LENGTH_SHORT)
                             .show()
@@ -77,10 +81,12 @@ class firestoreInstance (
                     if(dataList.contains(email)&&dataList.contains(password)){
                         Toast.makeText(con,"id present please login",Toast.LENGTH_SHORT)
                             .show()
+                        var intent = Intent(con,signInActivity::class.java)
+                        con.startActivity(intent)
                     }else{
-                        Toast.makeText(con,"go to the message box",Toast.LENGTH_SHORT)
-                            .show()
                         addInstance()
+                        var intent = Intent(con,messageBox::class.java)
+                        con.startActivity(intent)
                     }
                 }
             }
