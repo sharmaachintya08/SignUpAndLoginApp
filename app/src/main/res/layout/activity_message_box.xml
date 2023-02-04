@@ -12,7 +12,8 @@
         android:text="@string/chatc"
         android:textColor="@color/primary_text"
         android:gravity="center"
-        android:background="@drawable/chatc_rectangle"/>
+        android:background="@drawable/chatc_rectangle"
+        android:layout_marginBottom="@dimen/_2sdp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
