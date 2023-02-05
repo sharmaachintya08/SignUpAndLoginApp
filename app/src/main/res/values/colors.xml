@@ -15,4 +15,5 @@
     <color name="black">#000000</color>
     <color name="purple_200">#CE93D8</color>
     <color name="purple_700">#512DA8</color>
+    <color name="notification_color">#2C3E50</color>
 </resources>
