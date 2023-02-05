@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.chatc.R
 import com.example.chatc.data.ProfileData
 
-class MessageBoxAdapter(val profileData : List<ProfileData>) : RecyclerView.Adapter<MessageBoxAdapter.ViewHolder>(){
+class MessageBoxAdapter(val profileData : ArrayList<ProfileData>) : RecyclerView.Adapter<MessageBoxAdapter.ViewHolder>(){
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val cardview : LinearLayout
         val linearLayout : LinearLayout
