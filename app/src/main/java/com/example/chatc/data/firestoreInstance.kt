@@ -72,7 +72,6 @@ class firestoreInstance (
                     if(dataList.contains(email)&&dataList.contains(password)){
                         var intent = Intent(con,messageBox::class.java)
                         con.startActivity(intent)
-                        FirebaseCloudMessaging.getToken
                     }else{
                         Toast.makeText(con,"id not present please signup",Toast.LENGTH_SHORT)
                             .show()
