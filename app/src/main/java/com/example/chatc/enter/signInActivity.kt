@@ -14,7 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.example.chatc.R
 import com.example.chatc.Validity.ifValid
-import com.example.chatc.data.MyFirebaseMessaging
+import com.google.firebase.installations.FirebaseInstallations
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.internal.synchronized
 

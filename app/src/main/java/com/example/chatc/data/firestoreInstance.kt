@@ -12,6 +12,7 @@ import com.example.chatc.Validity.ifValid
 import com.example.chatc.enter.SignUpActivity
 import com.example.chatc.enter.signInActivity
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.installations.FirebaseInstallations
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.StorageReference
