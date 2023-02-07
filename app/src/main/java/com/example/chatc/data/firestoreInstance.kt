@@ -13,6 +13,7 @@ import com.example.chatc.enter.SignUpActivity
 import com.example.chatc.enter.signInActivity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.StorageReference
 import kotlin.properties.Delegates
 import kotlin.reflect.typeOf
@@ -72,7 +73,6 @@ class firestoreInstance (
                     if(dataList.contains(email)&&dataList.contains(password)){
                         var intent = Intent(con,messageBox::class.java)
                         con.startActivity(intent)
-                        FirebaseCloudMessaging.getToken
                     }else{
                         Toast.makeText(con,"id not present please signup",Toast.LENGTH_SHORT)
                             .show()
