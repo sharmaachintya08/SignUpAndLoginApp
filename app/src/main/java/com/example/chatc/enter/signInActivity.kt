@@ -14,7 +14,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.example.chatc.R
 import com.example.chatc.Validity.ifValid
+import com.example.chatc.data.MyFirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessaging
+import kotlinx.coroutines.internal.synchronized
 
 class signInActivity : AppCompatActivity(),View.OnClickListener {
 
@@ -25,22 +27,9 @@ class signInActivity : AppCompatActivity(),View.OnClickListener {
     private lateinit var email : EditText
     private lateinit var password : EditText
 
-    private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted: Boolean ->
-        if (isGranted) {
-            Log.i("permission","app will post notifications")
-        } else {
-            Log.i("permission","app will not post notifications")
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
-
-        askNotificationPermission()
-        Log.i("token","${FirebaseMessaging.getInstance().token.result}")
 
         signInButton = findViewById(R.id.buttonSignIn)
         createNewAccountText = findViewById(R.id.textCreateNewAccount)
@@ -76,22 +65,6 @@ class signInActivity : AppCompatActivity(),View.OnClickListener {
             startActivity(intent)
         }else{
             Log.d("debug","no if else option selected")
-        }
-    }
-
-    private fun askNotificationPermission() {
-        // This is only necessary for API level >= 33 (TIRAMISU)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) ==
-                PackageManager.PERMISSION_GRANTED
-            ) {
-                // FCM SDK (and your app) can post notifications.
-            } else if (shouldShowRequestPermissionRationale(android.Manifest.permission.POST_NOTIFICATIONS)) {
-
-            } else {
-                // Directly ask for the permission
-                requestPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
-            }
         }
     }
 }
