@@ -1,7 +1,5 @@
 package com.example.chatc.enter
 
-import android.Manifest.permission.POST_NOTIFICATIONS
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -12,18 +10,11 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.chatc.R
 import com.example.chatc.Validity.ifValid
-import com.example.chatc.data.FirebaseCloudMessaging
-import com.example.chatc.data.firestoreInstance
-import com.google.android.material.button.MaterialButton
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 
 class signInActivity : AppCompatActivity(),View.OnClickListener {
 
@@ -49,6 +40,7 @@ class signInActivity : AppCompatActivity(),View.OnClickListener {
         setContentView(R.layout.activity_sign_in)
 
         askNotificationPermission()
+        Log.i("token","${FirebaseMessaging.getInstance().token.result}")
 
         signInButton = findViewById(R.id.buttonSignIn)
         createNewAccountText = findViewById(R.id.textCreateNewAccount)
