@@ -14,6 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.example.chatc.R
 import com.example.chatc.Validity.ifValid
+import com.example.chatc.data.MyFirebaseMessaging
 import com.google.firebase.installations.FirebaseInstallations
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.internal.synchronized
@@ -30,6 +31,8 @@ class signInActivity : AppCompatActivity(),View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
+
+        MyFirebaseMessaging.getToken
 
         signInButton = findViewById(R.id.buttonSignIn)
         createNewAccountText = findViewById(R.id.textCreateNewAccount)
