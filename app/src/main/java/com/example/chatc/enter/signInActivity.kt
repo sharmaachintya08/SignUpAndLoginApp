@@ -10,13 +10,16 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.example.chatc.R
 import com.example.chatc.Validity.ifValid
 import com.example.chatc.data.MyFirebaseMessaging
 import com.google.firebase.installations.FirebaseInstallations
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.messaging.ktx.messaging
 import kotlinx.coroutines.internal.synchronized
 
 class signInActivity : AppCompatActivity(),View.OnClickListener {
@@ -28,11 +31,15 @@ class signInActivity : AppCompatActivity(),View.OnClickListener {
     private lateinit var email : EditText
     private lateinit var password : EditText
 
+    private val topic = "chatc"
+    private val TAG = "subscription"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
         MyFirebaseMessaging.getToken
+        subscribeToTopic()
 
         signInButton = findViewById(R.id.buttonSignIn)
         createNewAccountText = findViewById(R.id.textCreateNewAccount)
@@ -69,5 +76,16 @@ class signInActivity : AppCompatActivity(),View.OnClickListener {
         }else{
             Log.d("debug","no if else option selected")
         }
+    }
+    private fun subscribeToTopic(){
+        Firebase.messaging.subscribeToTopic(topic)
+            .addOnCompleteListener{task ->
+                var msg = "Subscribed"
+                if(!task.isSuccessful){
+                    msg = "Subscribe failed"
+                }
+                Log.d(TAG,msg)
+                Toast.makeText(applicationContext,msg,Toast.LENGTH_SHORT).show()
+            }
     }
 }
