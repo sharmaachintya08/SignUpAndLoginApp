@@ -27,7 +27,7 @@ class firestoreInstance (
     private val password : String,
     private val confirmPassword : String) {
 
-    private var dataList : MutableList<String> = mutableListOf()
+    private var dataList : ArrayList<String> = ArrayList()
     fun addInstance(){
         val db = Firebase.firestore
         val user = hashMapOf(
@@ -61,7 +61,6 @@ class firestoreInstance (
                     }
                 }
                 myCallBack.onCallBack(dataList)
-                Log.d("debug","after calling")
             }
             .addOnFailureListener { exception ->
                 Log.d("getData", "${exception}")
