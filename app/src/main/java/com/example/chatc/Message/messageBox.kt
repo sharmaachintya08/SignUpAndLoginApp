@@ -10,11 +10,14 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chatc.R
-import com.example.chatc.data.dummyData
+import com.example.chatc.data.Data
 
 open class messageBox : AppCompatActivity() {
     private lateinit var messageEditText : EditText
     private lateinit var sendButton : ImageView
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: MessageBoxAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_message_box)
@@ -22,10 +25,10 @@ open class messageBox : AppCompatActivity() {
         noteText()
     }
     fun recyclerViewReference(){
-        val recyclerView = findViewById<RecyclerView>(R.id.textBox)
+        recyclerView = findViewById<RecyclerView>(R.id.textBox)
         recyclerView.layoutManager = LinearLayoutManager(this@messageBox,
             RecyclerView.VERTICAL,true)
-        val adapter = MessageBoxAdapter(dummyData.getDummData())
+        adapter = MessageBoxAdapter(Data.getData())
         recyclerView.adapter = adapter
     }
     fun noteText(){
@@ -33,7 +36,9 @@ open class messageBox : AppCompatActivity() {
         sendButton.setOnClickListener(View.OnClickListener { view ->
             val text = messageEditText.text.toString()
             val intent = intent
-            val email = intent.getStringExtra("email")
+            val email = intent.getStringExtra("email").toString()
+            Data.setData(text,email)
+            adapter = MessageBoxAdapter(Data.getData())
         })
     }
     fun getReference(){
