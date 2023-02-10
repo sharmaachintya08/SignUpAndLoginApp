@@ -1,5 +1,6 @@
 package com.example.chatc.data
 
+import android.os.Message
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -9,9 +10,13 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.google.firebase.messaging.ktx.remoteMessage
+import java.util.stream.IntStream.builder
+import java.util.stream.Stream.builder
 
 object MyFirebaseMessaging : FirebaseMessagingService() {
     private val TAG = "firebaseservice"
+    private val topic : String = "chatc"
+
     val getToken = FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
         if(!task.isSuccessful){
             Log.i(TAG,task.exception.toString())
@@ -28,5 +33,13 @@ object MyFirebaseMessaging : FirebaseMessagingService() {
         message.notification?.let {
             Log.d(TAG, "Message Notification Body: ${it.body}")
         }
+    }
+    fun sendMessage(message : String , email : String){
+        val message = Message.builder()
+            .putData("email",email)
+            .putData("message",message)
+            .setTopic(topic)
+            .build()
+        val response = FirebaseMessaging.getInstance().send(message)
     }
 }
