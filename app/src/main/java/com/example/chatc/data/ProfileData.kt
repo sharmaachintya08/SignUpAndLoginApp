@@ -16,7 +16,7 @@ object Data{
     }
     fun getData() : ArrayList<ProfileData>{
         val dataList : ArrayList<ProfileData> = ArrayList()
-        dataList.add(ProfileData(ftext,femail))
+        dataList.add(ProfileData(femail,ftext))
         return dataList
     }
 }
