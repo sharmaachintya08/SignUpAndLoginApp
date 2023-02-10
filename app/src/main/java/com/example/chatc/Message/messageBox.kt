@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chatc.R
 import com.example.chatc.data.Data
+import com.example.chatc.data.MyFirebaseMessaging
 
 open class messageBox : AppCompatActivity() {
     private lateinit var messageEditText : EditText
@@ -38,9 +39,7 @@ open class messageBox : AppCompatActivity() {
             val text = messageEditText.text.toString()
             val intent = intent
             val email = intent.getStringExtra("email").toString()
-            Data.setData(text,email)
-            adapter = MessageBoxAdapter(Data.getData())
-            recyclerView.swapAdapter(adapter,false)
+            MyFirebaseMessaging.sendMessage(text,email)
         })
     }
     fun getReference(){
