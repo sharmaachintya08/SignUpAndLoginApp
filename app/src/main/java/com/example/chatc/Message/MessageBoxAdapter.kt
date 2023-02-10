@@ -33,7 +33,6 @@ class MessageBoxAdapter(val profileData : ArrayList<ProfileData>) : RecyclerView
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        //set the profileImage too
         holder.profileName.setText(profileData[position].name)
         holder.messageText.setText(profileData[position].message)
     }

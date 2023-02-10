@@ -21,15 +21,16 @@ open class messageBox : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_message_box)
-        recyclerViewReference()
+
+        recyclerViewBuild()
         noteText()
     }
-    fun recyclerViewReference(){
+    fun recyclerViewBuild(){
         recyclerView = findViewById<RecyclerView>(R.id.textBox)
         recyclerView.layoutManager = LinearLayoutManager(this@messageBox,
             RecyclerView.VERTICAL,true)
-        adapter = MessageBoxAdapter(Data.getData())
-        recyclerView.adapter = adapter
+            adapter = MessageBoxAdapter(Data.getData())
+            recyclerView.adapter = adapter
     }
     fun noteText(){
         getReference()
@@ -39,6 +40,7 @@ open class messageBox : AppCompatActivity() {
             val email = intent.getStringExtra("email").toString()
             Data.setData(text,email)
             adapter = MessageBoxAdapter(Data.getData())
+            recyclerView.swapAdapter(adapter,false)
         })
     }
     fun getReference(){
