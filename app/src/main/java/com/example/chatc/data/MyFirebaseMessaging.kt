@@ -33,6 +33,7 @@ object MyFirebaseMessaging : FirebaseMessagingService() {
         message.notification?.let {
             Log.d(TAG, "Message Notification Body: ${it.body}")
         }
+        Data.setData(message.data.toString(),message.data.toString())
     }
     fun sendMessage(message : String , email : String){
         val message = Message.builder()
