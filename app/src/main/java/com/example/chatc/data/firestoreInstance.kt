@@ -21,7 +21,6 @@ import kotlin.reflect.typeOf
 
 class firestoreInstance (
     private val con : Context,
-    private val imageRef : StorageReference?,
     private val name: String,
     private val email : String,
     private val password : String,
@@ -31,7 +30,6 @@ class firestoreInstance (
     fun addInstance(){
         val db = Firebase.firestore
         val user = hashMapOf(
-            "imageref" to imageRef,
             "name" to name,
             "email" to email,
             "password" to password,
