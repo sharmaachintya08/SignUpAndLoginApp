@@ -30,6 +30,7 @@ open class messageBox : AppCompatActivity() {
         recyclerView = findViewById<RecyclerView>(R.id.textBox)
         recyclerView.layoutManager = LinearLayoutManager(this@messageBox,
             RecyclerView.VERTICAL,true)
+        //there can be some trouble in adapter
             adapter = MessageBoxAdapter(Data.getData())
             recyclerView.adapter = adapter
     }
