@@ -20,7 +20,6 @@ open class messageBox : AppCompatActivity() {
         setContentView(R.layout.activity_message_box)
         recyclerViewReference()
         noteText()
-        getData()
     }
     fun recyclerViewReference(){
         val recyclerView = findViewById<RecyclerView>(R.id.textBox)
@@ -33,15 +32,12 @@ open class messageBox : AppCompatActivity() {
         getReference()
         sendButton.setOnClickListener(View.OnClickListener { view ->
             val text = messageEditText.text.toString()
-            Log.d("text",text)
+            val intent = intent
+            val email = intent.getStringExtra("email")
         })
     }
     fun getReference(){
         messageEditText = findViewById(R.id.sendMessage)
         sendButton = findViewById(R.id.sendMessageButton)
-    }
-    fun getData(){
-        val intent = intent
-        val email = intent.getStringExtra("email")
     }
 }
