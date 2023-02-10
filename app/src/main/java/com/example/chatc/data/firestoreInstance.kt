@@ -54,6 +54,7 @@ class firestoreInstance (
             .get()
             .addOnSuccessListener { document ->
                 for (i in document) {
+                    Log.i("debug","${i}")
                     for (j in i.data.values) {
                         j?.let {
                             dataList.add(j.toString())
@@ -72,6 +73,7 @@ class firestoreInstance (
                 if(con is signInActivity){
                     if(dataList.contains(email)&&dataList.contains(password)){
                         var intent = Intent(con,messageBox::class.java)
+                        intent.putExtra("email",email)
                         con.startActivity(intent)
                     }else{
                         Toast.makeText(con,"id not present please signup",Toast.LENGTH_SHORT)
@@ -82,6 +84,7 @@ class firestoreInstance (
                         Toast.makeText(con,"id present please login",Toast.LENGTH_SHORT)
                             .show()
                         var intent = Intent(con,signInActivity::class.java)
+                        intent.putExtra("email",email)
                         con.startActivity(intent)
                     }else{
                         addInstance()
