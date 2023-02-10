@@ -13,12 +13,10 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.chatc.R
 import com.example.chatc.Validity.ifValid
-import com.example.chatc.data.FirebaseStorageInstance
 import com.google.firebase.storage.StorageReference
 import java.net.URI
 
 class SignUpActivity : AppCompatActivity(),View.OnClickListener {
-    private lateinit var profileImage : ImageView
     private lateinit var signUpButton : Button
     private lateinit var signInButton : TextView
     private lateinit var guestContinueButton : TextView
@@ -35,7 +33,6 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        profileImage = findViewById(R.id.imageProfile)
         signUpButton = findViewById(R.id.buttonSignUp)
         signInButton = findViewById(R.id.textSignIn)
         guestContinueButton = findViewById(R.id.guestContinue)
@@ -45,7 +42,6 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
         password = findViewById(R.id.inputPassword)
         confirmPassword = findViewById(R.id.inputConfirmPassword)
 
-        profileImage.setOnClickListener(this@SignUpActivity)
         signUpButton.setOnClickListener(this@SignUpActivity)
         signInButton.setOnClickListener(this@SignUpActivity)
         guestContinueButton.setOnClickListener(this@SignUpActivity)
@@ -53,7 +49,6 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
 
     override fun onClick(view: View?) {
         when(view?.id){
-            R.id.imageProfile -> startIntent(1)
             R.id.buttonSignUp -> startIntent(2)
             R.id.textSignIn -> startIntent(3)
             R.id.guestContinue -> startIntent(4)
@@ -61,11 +56,7 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
     }
     private fun startIntent(param : Int){
         lateinit var intent : Intent
-        if(param == 1){
-            getImage()
-            storageRef = FirebaseStorageInstance(profileImage).storageReference()
-        }
-        else if(param == 2){
+        if(param == 2){
             validity = ifValid(this@SignUpActivity,storageRef,name,email,password,confirmPassword)
             if(validity.signUpValid(this@SignUpActivity)){
                 validity.returnVal()
@@ -80,18 +71,5 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
             Log.d("debug","no button clicked")
         }
     }
-    private fun getImage(){
-        val intent : Intent = Intent()
-        intent.setType("image/*")
-        intent.setAction(Intent.ACTION_GET_CONTENT)
-        startActivityForResult(Intent.createChooser(intent,"title"),SELECT_IMAGE_CODE)
-    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 1){
-            val uri = data?.data
-            profileImage.setImageURI(uri)
-        }
-    }
 }
