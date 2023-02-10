@@ -26,7 +26,6 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
     private lateinit var password : EditText
     private lateinit var confirmPassword : EditText
 
-    private var storageRef : StorageReference? = null
     private lateinit var validity : ifValid
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +55,7 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
     private fun startIntent(param : Int){
         lateinit var intent : Intent
         if(param == 2){
-            validity = ifValid(this@SignUpActivity,storageRef,name,email,password,confirmPassword)
+            validity = ifValid(this@SignUpActivity,name,email,password,confirmPassword)
             if(validity.signUpValid(this@SignUpActivity)){
                 validity.returnVal()
             }
