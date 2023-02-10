@@ -41,8 +41,7 @@ open class messageBox : AppCompatActivity() {
         sendButton = findViewById(R.id.sendMessageButton)
     }
     fun getData(){
-        val intent = Intent()
-        val email = intent.getCharArrayExtra("email").toString()
-        Log.i("getData",email)
+        val intent = intent
+        val email = intent.getStringExtra("email")
     }
 }
