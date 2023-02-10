@@ -1,5 +1,6 @@
 package com.example.chatc.Message
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +20,7 @@ open class messageBox : AppCompatActivity() {
         setContentView(R.layout.activity_message_box)
         recyclerViewReference()
         noteText()
+        getData()
     }
     fun recyclerViewReference(){
         val recyclerView = findViewById<RecyclerView>(R.id.textBox)
@@ -37,5 +39,10 @@ open class messageBox : AppCompatActivity() {
     fun getReference(){
         messageEditText = findViewById(R.id.sendMessage)
         sendButton = findViewById(R.id.sendMessageButton)
+    }
+    fun getData(){
+        val intent = Intent()
+        val email = intent.getCharArrayExtra("email").toString()
+        Log.i("getData",email)
     }
 }
