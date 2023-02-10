@@ -26,7 +26,6 @@ class SignUpActivity : AppCompatActivity(),View.OnClickListener {
     private lateinit var password : EditText
     private lateinit var confirmPassword : EditText
 
-    private val SELECT_IMAGE_CODE : Int = 1
     private var storageRef : StorageReference? = null
     private lateinit var validity : ifValid
 

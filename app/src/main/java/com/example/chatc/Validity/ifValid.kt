@@ -10,13 +10,12 @@ import com.google.firebase.storage.StorageReference
 
 class ifValid (
     private val con : Context,
-    private val storageRef : StorageReference?,
     private val name : EditText?,
     private val email : EditText?,
     private val password : EditText?,
     private val confirmPassword : EditText?
 ) {
-    private val fInstance = firestoreInstance(con,storageRef, name?.text.toString(), email?.text.toString(), password?.text.toString(), confirmPassword?.text.toString())
+    private val fInstance = firestoreInstance(con, name?.text.toString(), email?.text.toString(), password?.text.toString(), confirmPassword?.text.toString())
     fun signUpValid(con: Context): Boolean {
         if (name?.text.toString().trim().isEmpty()) {
             Toast.makeText(con, "please fill the name field", Toast.LENGTH_SHORT)
