@@ -43,7 +43,7 @@ class guest : AppCompatActivity(),View.OnClickListener {
     private fun startIntent(param : Int){
         lateinit var intent : Intent
         if(param == 1){
-            val validity = ifValid(this@guest,null,name,null,null,null)
+            val validity = ifValid(this@guest,name,null,null,null)
                 .guestValid(this@guest)
             if(validity == true){
                 //do something
