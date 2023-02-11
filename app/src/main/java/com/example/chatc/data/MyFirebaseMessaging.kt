@@ -36,11 +36,6 @@ object MyFirebaseMessaging : FirebaseMessagingService() {
         Data.setData(message.data.toString(),message.data.toString())
     }
     fun sendMessage(message : String , email : String){
-        val message = Message.builder()
-            .putData("email",email)
-            .putData("message",message)
-            .setTopic(topic)
-            .build()
-        val response = FirebaseMessaging.getInstance().send(message)
+
     }
 }
