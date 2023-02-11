@@ -1,6 +1,5 @@
 package com.example.chatc.data
 
-import com.google.firebase.storage.StorageReference
 
 data class ProfileData(
     val name : String,
