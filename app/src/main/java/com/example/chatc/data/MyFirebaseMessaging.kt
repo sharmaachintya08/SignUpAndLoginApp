@@ -23,7 +23,7 @@ import javax.net.ssl.HttpsURLConnection
 object MyFirebaseMessaging : FirebaseMessagingService() {
     private val TAG = "firebaseservice"
     private val topic : String = "chatc"
-    private val KEY : String = "BPEB1TgJPXy_lkGr3sRo26GTtbxBQAcPQK8W7IzKMtVlElM5DFvkNJFnOT0vnSWkYL9S_EHzRsUxuocCqVFPi4o"
+    private val KEY : String = "AAAARqFuhXg:APA91bGvFadFWLDUv3jNn2JuxGVhx_2M9YizaU3sugZUzpXxzjQ3Ikgg16NtmyiWbSyn297mReu52Ja-Is8GnUCJmG3zyknMgQnmmG_Dad4oxDjbi5uQgAPTdqWvX9HCROMUu7UnnrTY"
 
     val getToken = FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
         if(!task.isSuccessful){
@@ -34,6 +34,7 @@ object MyFirebaseMessaging : FirebaseMessagingService() {
     })
 
     override fun onMessageReceived(message: RemoteMessage) {
+        Log.i("message","${message.data.get("message")}")
         Data.setData(message.data.get("message").toString(),message.data.get("email").toString())
     }
     fun sendMessage(message : String , email : String){
