@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.example.chatc.Message.messageBox
 import com.example.chatc.R
 import com.example.chatc.Validity.ifValid
 
@@ -46,7 +47,8 @@ class guest : AppCompatActivity(),View.OnClickListener {
             val validity = ifValid(this@guest,name,null,null,null)
                 .guestValid(this@guest)
             if(validity == true){
-                //do something
+                val intent = Intent(applicationContext,messageBox::class.java)
+                startActivity(intent)
             }
         }else if(param == 2){
             intent = Intent(this@guest,SignUpActivity::class.java)

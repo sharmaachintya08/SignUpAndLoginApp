@@ -85,7 +85,6 @@ class signInActivity : AppCompatActivity(),View.OnClickListener {
                     msg = "Subscribe failed"
                 }
                 Log.d(TAG,msg)
-                Toast.makeText(applicationContext,msg,Toast.LENGTH_SHORT).show()
             }
     }
 }
