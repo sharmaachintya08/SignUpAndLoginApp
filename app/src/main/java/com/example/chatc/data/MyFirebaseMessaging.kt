@@ -1,10 +1,17 @@
 package com.example.chatc.data
 
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.media.RingtoneManager
 import android.os.Message
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.example.chatc.Message.messageBox
 import com.example.chatc.R
+import com.example.chatc.enter.signInActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -33,10 +40,35 @@ object MyFirebaseMessaging : FirebaseMessagingService() {
         Log.i("token",task.result.toString())
     })
 
-    override fun onMessageReceived(message: RemoteMessage) {
-        Log.i("message","${message.data.get("message")}")
-        Data.setData(message.data.get("message").toString(),message.data.get("email").toString())
+    override fun onMessageReceived(p0: RemoteMessage) {
+        super.onMessageReceived(p0)
+        Log.e("onMessageReceived: ", p0.data.toString())
+
+        val title = p0.data.get("email")
+        val content = p0.data.get("message")
+        val defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+
+        val intent = Intent(this,messageBox::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+
+        val pendingIntent = PendingIntent.getActivity(applicationContext,0,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val notification = NotificationCompat.Builder(applicationContext,"1")
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle(title)
+            .setContentText(content)
+            .setContentIntent(pendingIntent)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setSound(defaultSound)
+
+        val notificationManager : NotificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.notify(1,notification.build())
+
     }
+
     fun sendMessage(message : String , email : String){
         @OptIn(DelicateCoroutinesApi::class)
         GlobalScope.launch{
