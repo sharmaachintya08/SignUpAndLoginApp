@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chatc.R
@@ -40,7 +41,12 @@ open class messageBox : AppCompatActivity() {
             val text = messageEditText.text.toString()
             val intent = intent
             val email = intent.getStringExtra("email").toString()
-            MyFirebaseMessaging.sendMessage(text,email)
+            if(text.isEmpty()){
+                Toast.makeText(applicationContext,"please type something to send",Toast.LENGTH_SHORT)
+                    .show()
+            }else{
+                MyFirebaseMessaging.sendMessage(text,email)
+            }
         })
     }
     fun getReference(){
